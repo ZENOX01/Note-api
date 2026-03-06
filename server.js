@@ -31,7 +31,7 @@ app.use('/notes', noteRoutes);
 app.use('/auth', authRoutes);
 
 // Fallback to index.html for any other routes (important for SPA-like behavior)
-app.get('*', (req, res) => {
+app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'Frontend', 'index.html'));
 });
 
