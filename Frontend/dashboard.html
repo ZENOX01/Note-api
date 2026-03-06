@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Notes API</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="glass-card" style="margin-bottom: 2rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                <h1>My Notes</h1>
+                <button onclick="logout()" style="width: auto; padding: 0.5rem 1rem; font-size: 0.875rem;" class="delete-btn">Logout</button>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <input id="title" placeholder="Note Title">
+                <input id="search" placeholder="Search notes..." oninput="getNotes()">
+            </div>
+            <textarea id="content" placeholder="Write your content here..." style="margin-top: 1rem; min-height: 100px;"></textarea>
+            <button onclick="createNote()" style="margin-top: 1rem;">Add New Note</button>
+        </div>
+
+        <div id="notes-container" class="notes-grid">
+            <!-- Notes will be loaded here -->
+        </div>
+
+        <div id="pagination" style="display: flex; justify-content: center; gap: 0.5rem; margin-top: 2rem; padding-bottom: 3rem;">
+            <!-- Pagination buttons -->
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/notes.js"></script>
+    <script>
+        // Initial load
+        getNotes();
+    </script>
+</body>
+</html>
