@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const path = require('path');
 const cors = require('cors');
 const connectDB = require('./config/db');
 const noteRoutes = require('./routes/noteRoutes');
@@ -23,13 +24,16 @@ app.use((req, res, next) => {
   next();
 });
 
-// Routes
-app.get("/", (req, res) => {
-  res.send("Notes API is running...");
-});
+// Serve Frontend static files
+app.use(express.static(path.join(__dirname, 'Frontend')));
 
 app.use('/notes', noteRoutes);
 app.use('/auth', authRoutes);
+
+// Fallback to index.html for any other routes (important for SPA-like behavior)
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'Frontend', 'index.html'));
+});
 
 const PORT = process.env.PORT || 5000;
 
